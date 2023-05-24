@@ -68,12 +68,17 @@ public class UsuarioController {
 	    Usuario usuarioExistente = usuarioOptional.get();
 	    usuarioExistente.setNombre(usuarioActualizado.getNombre());
 	    usuarioExistente.setApellido(usuarioActualizado.getApellido());
+	    usuarioExistente.setTipo_documento(usuarioActualizado.getTipo_documento());
+	    usuarioExistente.setDocumento_identificacion(usuarioActualizado.getDocumento_identificacion());
+	    usuarioExistente.setEstado(usuarioActualizado.getEstado());
+	    usuarioExistente.setSexo(usuarioActualizado.getSexo());
 	    // Actualiza los demás campos según necesidad
 
 	    Usuario usuarioActualizadoDB = usuarioService.save(usuarioExistente);
 
 	    return ResponseEntity.ok(usuarioActualizadoDB);
 	}
+	
 	@DeleteMapping("eliminar/{id}")
 	public ResponseEntity<?> eliminar(@PathVariable("id") Long id) {
 	    Optional<Usuario> usuarioOptional = usuarioService.findById(id);
